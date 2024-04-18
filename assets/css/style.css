@@ -1,0 +1,255 @@
+:root {
+    --text-color: #333;
+    --bg: #d8d8d8;
+    --bg-overlay: rgba(255, 255, 255, 0.6); ;
+    --bg-nav: #ccc;
+    --linear1: #ffffff1a;
+    --linear2: #d8d8d8;
+    --border-color: #999;
+    --btn-color: #dbdbdb;
+}
+
+
+:root.dark {
+    --text-color: #b8b8b8;
+    --bg: #000;
+    --bg-overlay: rgba(0, 0, 0, 0.6) ;
+    --bg-nav: #101010;
+    --linear1: #0000001a;
+    --linear2: #000;
+    --border-color: #ccc;
+    --btn-color: #181818;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--text-color);
+    font-family: Arial, Helvetica, sans-serif;
+    transition: 0.5s ease-in;
+}
+
+
+.loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    z-index: 10000;
+}
+
+.loading.loaded, .open, .overlay{
+    display: none;
+}
+
+.app {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+@keyframes show-nav {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.app .nav {
+    min-width: 200px;
+    max-width: 300px;
+    width: 30%;
+    background-color: var(--bg-nav);
+}
+
+.app .content {
+    flex: 1;
+    background-color: var(--bg);
+    overflow-y: scroll;
+}
+
+.imgSec {
+    padding: 16px;
+    text-align: center;
+    margin: 8px;
+}
+
+.imgSec img {
+    display: block;
+    width: 100%;
+    margin-bottom: 16px;
+    box-shadow: 0 0 10px #000;
+    border-radius: 1500px;
+}
+
+.nav-item .item {
+    height: 40px;
+    text-align: right;
+    padding: 8px 16px;
+}
+
+.nav-item .item.active {
+    background-color: var(--bg-overlay);
+}
+
+.nav-item .item:hover {
+    background-color: var(--bg-overlay);
+    cursor: pointer;
+}
+
+
+
+.ct{
+    display: none;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.ct.active {
+    animation: show ease 0.6s;
+    display: block;
+}
+
+.content .banner {
+    width: 100%;
+    height: 350px;
+    background-image: url('../img/back.jpg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ct-in {
+    margin: 8px;
+}
+
+.content .item {
+    padding: 8px;
+    border: var(--border-color) solid 1px;
+    border-radius: 5px;
+    margin: 16px 14px;
+}
+
+.content .item p {
+    margin-top: 4px;
+}
+
+#contact .list a {
+    text-decoration: none;
+    display: block;
+    background-color: var(--bg-nav);
+    margin: 16px;
+    min-height: 30px;
+    padding: 8px;
+    border-radius: 5px;
+    border: var(--border-color) solid 1px;
+}
+
+#contact .list a:hover {
+    background-color: var(--btn-color);
+}
+
+
+#some-img .img {
+    margin: 16px;
+}
+
+#some-img .img img {
+    width: 100%;
+}
+
+@media (max-width : 739px){
+    .open {
+        display: block;
+        width: 35px;
+        position: relative;
+        background-color: var(--bg-nav);
+        cursor: pointer;
+    }
+
+    .open h2 {
+        position: absolute;
+        top: calc(50%);
+        left: -184px;
+        width: 400px;
+        transform: rotate(-90deg);
+        text-align: center;
+
+    }
+
+    @keyframes unhidden {
+        from {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes hidden {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+    }
+
+
+
+    .app .nav {
+        display: none;
+        animation: unhidden linear 0.5s;
+    }
+
+    .app .nav.open {
+        display: block;
+        position: fixed;
+        height: 100vh;
+        width: 200px;
+        z-index: 10;
+    }
+    
+    .overlay {
+        display: none;
+    }
+
+    .overlay.active {
+        display: block;
+        position: fixed;
+        background-color: var(--bg-overlay);
+        z-index: 5;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+
+    .content .banner {
+        height: 200px;
+    }
+}
